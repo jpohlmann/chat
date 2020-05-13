@@ -214,7 +214,7 @@ paths:
                       example: 4
                     message:
                       type: string
-                      name: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                      example: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
                     sender_id:
                       type: integer
                       format: int64
@@ -241,9 +241,17 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                message:
                   type: string
-                  example: John McClain
+                  example: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                sender_id:
+                  type: integer
+                  format: int64
+                  example: 4
+                recipient_id:
+                  type: integer
+                  format: int64
+                  example: 4
       responses:
         '201':
           description: Created message
@@ -256,9 +264,17 @@ paths:
                     type: integer
                     format: int64
                     example: 4
-                  name:
+                  message:
                     type: string
-                    example: John McClain
+                    example: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                  sender_id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  recipient_id:
+                    type: integer
+                    format: int64
+                    example: 4
                   created_at:
                     type: date
                     example: 2020-05-13T04:51:30.000000Z
@@ -291,7 +307,7 @@ paths:
                     example: 4
                   message:
                     type: string
-                    name: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                    example: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
                   sender_id:
                     type: integer
                     format: int64
@@ -327,9 +343,17 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                message:
                   type: string
-                  example: John McClain
+                  example: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                sender_id:
+                  type: integer
+                  format: int64
+                  example: 4
+                recipient_id:
+                  type: integer
+                  format: int64
+                  example: 4
       responses:
         '200':
           description: Updated message
@@ -342,9 +366,17 @@ paths:
                     type: integer
                     format: int64
                     example: 4
-                  name:
+                  message:
                     type: string
-                    example: John McClain
+                    example: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                  sender_id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  recipient_id:
+                    type: integer
+                    format: int64
+                    example: 4
                   created_at:
                     type: date
                     example: 2020-05-13T04:51:30.000000Z
