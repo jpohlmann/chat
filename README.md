@@ -26,6 +26,6 @@ Documentation of the api can be seen at http://localhost:8080/swagger/index.html
 
 If you want a database seeded with test data, you can run
 
-docker-compose exec web | php artisan db:seed
+docker-compose exec app | php artisan db:seed
 
 

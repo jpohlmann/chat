@@ -57,7 +57,7 @@ class MessageController extends Controller
     public function create(Request $request) : JsonResponse
     {
         $this->validate(request(), [
-            'name' => 'required|unique:users'
+            'message' => 'required'
         ]);
         $user = Message::create(request()->all());
         return response()->json($user, 201);
