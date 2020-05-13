@@ -1,0 +1,378 @@
+openapi: 3.0.0
+info:
+  title: Messages API
+  description: API for sending messages between users
+  version: 1
+servers:
+  - url: http://localhost:8080/
+    description: Local development environment
+paths:
+  /api/users:
+    get:
+      summary: Returns a list of users.
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 4
+                    name:
+                      type: string
+                      name: John McClain
+                    created_at:
+                      type: date
+                      example: 2020-05-13T04:51:30.000000Z
+                    updated_at:
+                      type: date
+                      example: 2020-05-13T04:51:30.000000Z
+    post:
+      summary: Create a user
+      description: Add a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John McClain
+      responses:
+        '201':
+          description: Created user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: John McClain
+                  created_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+                  updated_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+  /api/users/{id}:
+    get:
+      summary: Returns a user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':    # status code
+          description: An individual user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    name: John McClain
+                  created_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+                  updated_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+        '404':
+          description: User not found
+    put:
+      summary: Update a user
+      description: Update an existing user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John McClain
+      responses:
+        '200':
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: John McClain
+                  created_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+                  updated_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+        '422':
+          description: Validation error with form submit
+        '404':
+          description: User to update not found
+    delete:
+      summary: Delete a user
+      description: Delete an existing user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Deleted user
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: User to delete not found
+  /api/messages:
+    get:
+      summary: Returns a list of messages.  By default, this is the last 30 days of messages, or you can alternately supply a limit
+      parameters:
+        - name: limit
+          in: query
+          description: The number of records to limit the response to
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 100
+        - name: sender_id
+          description: The sender to filter on
+          in: query
+          schema:
+            type: integer
+            format: int64
+            in: query
+            minimum: 1
+        - name: recipient_id
+          description: The recipient to filter on
+          in: query
+          schema:
+            type: integer
+            format: int64
+            in: query
+            minimum: 1
+      responses:
+        '200':    # status code
+          description: Messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 4
+                    message:
+                      type: string
+                      name: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                    sender_id:
+                      type: integer
+                      format: int64
+                      example: 4
+                    recipient_id:
+                      type: integer
+                      format: int64
+                      example: 4
+                    created_at:
+                      type: date
+                      example: 2020-05-13T04:51:30.000000Z
+                    updated_at:
+                      type: date
+                      example: 2020-05-13T04:51:30.000000Z
+        '422':
+          description: Validation error with query parameters
+    post:
+      summary: Create a message
+      description: Add a new message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John McClain
+      responses:
+        '201':
+          description: Created message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: John McClain
+                  created_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+                  updated_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+  /api/messages/{id}:
+    get:
+      summary: Returns a list of messages.  By default, this is the last 30 days of messages, or you can alternately supply a limit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the message.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':    # status code
+          description: Message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  message:
+                    type: string
+                    name: Quas tempore et eveniet odit. Et officia provident porro officiis dolor sed. Veniam odio aliquam consequuntur iusto expedita est assumenda
+                  sender_id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  recipient_id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  created_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+                  updated_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+        '404':
+          description: Message not found
+    put:
+      summary: Update a message
+      description: Update an existing message
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the message to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John McClain
+      responses:
+        '200':
+          description: Updated message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: John McClain
+                  created_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+                  updated_at:
+                    type: date
+                    example: 2020-05-13T04:51:30.000000Z
+        '422':
+          description: Validation error with form submit
+        '404':
+          description: Message to update not found
+    delete:
+      summary: Delete a message
+      description: Delete an existing message
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the message to update.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Deleted message
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Message to delete not found
