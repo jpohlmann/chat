@@ -32,3 +32,6 @@ docker-compose exec app | php artisan db:seed
 ## TODOs
 
 Right now the app container takes a bit to start up, during which, you get 502 errors. Add health check to docker-compose or Dockerfile.
+You can check the status of startup with
+
+docker-compose logs -f
