@@ -3,6 +3,8 @@
  * Message endpoint tests
  *
  * Tests the requests for the message endpoint.  Assumes that there is data in the database
+ *
+ * @author Justin Pohlmann
  */
 
 use Laravel\Lumen\Testing\DatabaseMigrations;

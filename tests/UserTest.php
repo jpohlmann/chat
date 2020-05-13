@@ -3,6 +3,8 @@
  * User endpoint tests
  *
  * Tests the requests for the user endpoint.  Assumes that there is data in the database
+ * 
+ * @author Justin Pohlmann
  */
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
