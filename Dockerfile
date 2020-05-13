@@ -8,6 +8,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY ./composer.json ./composer.lock* ./
 ENV COMPOSER_VENDOR_DIR=/var/www/vendor
 
-RUN composer install --ansi --no-interaction
+RUN composer install --no-scripts --no-autoloader --ansi --no-interaction
 
 RUN chmod +x /usr/local/bin/initialize.sh

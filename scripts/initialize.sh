@@ -1,7 +1,11 @@
 #!/bin/sh
 set -e
 touch /var/www/database/database.sqlite
+cd /var/www/
 test -f ./.env || cp ./.env.example ./.env
+
+composer install
+composer dump-autoload
 
 php artisan migrate --force
 
