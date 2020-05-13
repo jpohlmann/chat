@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 touch /var/www/database/database.sqlite
-composer install
+composer install --no-scripts --no-autoloader --ansi --no-interaction
 php artisan migrate
 
 # first arg is `-f` or `--some-option`
