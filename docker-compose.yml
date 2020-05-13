@@ -17,6 +17,6 @@ services:
       context: .
       dockerfile: Dockerfile
     working_dir: /var/www
-    entrypoint: /usr/local/bin/initialize.sh
+    entrypoint: /usr/local/bin/initialize.sh php-fpm
     volumes:
       - ./:/var/www
